@@ -1,0 +1,133 @@
+(ns code-katas-1.core)
+
+(defn filter-odd
+  "Escribir una funcion que retorne solamente los numeros impares de
+una secuencia"
+  [s]
+  (filter odd? s)
+  )
+
+;(println (filter-odd #{1 2 3 4 5}))
+
+(defn nil-key
+  "Escribir una funcion que dada una clave y un mapa, devuelva true, solamente si el mapa
+contiene una entrada con esa clave, y su valor es nil"
+  [k m]
+  (if (contains? m k)
+    (nil? (get m k))
+    false 
+  )
+)
+;(println(nil-key  :c {:a nil :b 2}))
+
+
+(defn range
+  "Escribir una funcion que cree una lista de enteros en un rango dado.
+Restricciones: range"
+  [start end]
+  (if (= start (- end 1))
+       (conj ()  (- end 1))
+       (conj (range (+ start 1) end) start  )
+         
+ 
+  )
+  )
+;(println(range 4 8))
+
+(defn compress-sequence
+  "Escribir una funcion que elimine los duplicados consecutivos
+de una secuencia"
+  [s]
+ (if (string? s) 
+   (compress-sequence (seq s))
+  
+   (if(= (first s) nil)
+     (list )
+    (if (not(= (first s) (second s)))
+      (conj (compress-sequence (rest s)) (first s))
+      (compress-sequence (rest s))
+      )))
+  )
+;(println(compress-sequence "Hoooloaa"))
+
+(defn max-value
+  "Escribir una funcion que reciba un numero variable de parametros
+y retorne el que tenga el valor mayor
+Restricciones: max y max-key"
+  [& args]
+   (let
+     [
+      letras(sort args)
+      mayor(last letras)]
+     mayor
+    )
+  )
+
+;(println(max-value 1 8 38 4))
+
+(defn split-two
+  "Escribir una funcion que parta una secuencia en dos partes
+Restricciones: split-at"
+  [length s]
+  )
+  
+  (defn inter-two
+  "Escribir una funcion que reciba dos secuencias y retorne el primero de cada una,
+luego el segundo de cada una, luego el tercero, etc.
+Restricciones: interleave"
+  [s1 s2]
+  ;(println (count s2))
+  
+  (if (< (count s1) (count s2) )
+    (if (= (count s1) 1)
+      (conj () (first s2) (last s1))
+      (conj (inter-two (rest s1) (rest s2)) (first s2) (first s1) ))
+    (if (= (count s2) 1)
+      (conj ()  (last s2) (first s1))
+      (conj (inter-two (rest s1) (rest s2))  (first s2) (first s1) )))
+ 
+         
+         
+        ; (conj () (last s2) (last s1))
+              
+)
+  
+;(println(inter-two [1 2] [3 4 5 6]))
+
+(defn retrieve-caps
+  "Escribir una funcion que reciba un string y devuelva un nuevo string conteniendo
+solamente las mayusculas."
+  [text]
+  (let[
+    minusculas (filter #(Character/isUpperCase %)text)
+    dev (reduce str "" minusculas)
+ 
+    ]
+    dev
+    )
+  )
+  
+
+(println (retrieve-caps "HoLa"))
+
+(defn find-truth
+  "Escribir una funcion que tome un numero variable de booleans, y devuelva true
+solamente si alguno de los parametros son true, pero no todos son true. En otro
+caso debera retornar false"
+  [& xs]
+  (if (some true? xs)
+    (if (some false? xs)
+      true
+      false)
+    false)
+  )
+
+;(println(find-truth false false))
+
+(defn zip-map
+  "Escribir una funcion que reciba un vector de claves y un vector de valores, y
+construya un mapa a partir de ellos.
+Restricciones: zipmap"
+  [k v]
+  )
+  
